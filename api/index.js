@@ -1,3 +1,4 @@
+import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
@@ -19,6 +20,7 @@ const connect = async () => {
 }
 
 //middlewares
+app.use(cookieParser());
 app.use(express.json());
 
 app.use('/api/auth', authRoute);
@@ -36,6 +38,7 @@ app.use((err, req, res, next) => {
         message: errorMessage,
         stack: err.stack
     });
+    
 });
 
 app.listen(8800, () => {
